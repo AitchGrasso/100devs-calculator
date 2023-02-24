@@ -1,9 +1,16 @@
-
-
-// let display = document.querySelector('#display').innerHTML
-
-let buttons = document.querySelectorAll('.btn')
+const numberButtons = document.querySelectorAll('.num-btn')
 buttons.forEach(ele => ele.addEventListener('click', buttonPress))
+
+const opeeratorButtons = document.querySelectorAll('.num-btn')
+buttons.forEach(ele => ele.addEventListener('click', buttonPress))
+
+const equalButton = document.querySelectorAll('.num-btn').addEventListener('click', buttonPress)
+
+const decimalButton = document.querySelectorAll('.num-btn').addEventListener('click', buttonPress)
+
+const displayCurrent = document.querySelector('#display-current');
+const displayPrevious = document.querySelector('#display-previous');
+
 console.log(buttons)
 
 // function buttonPress(Event){
@@ -20,11 +27,30 @@ console.log(buttons)
 // }
 
 class Calculator {
-    constructor(firstArg, secondArg, operationSymbol) {
-        this.first = firstArg
-        this.second = secondArg
-        this.operation = operationSymbol     
+    constructor(displayCurrent, displayPrevious) {
+        this.displayCurrent = displayCurrent
+        this.displayPrevious = displayPrevious
+        this.clear()  
     }
+
+    clear() {
+        this.currentOperand = ""
+        this.previousOperand = ""
+        this.operation = null
+    }
+
+    // no delete button
+
+    appendNumber(number) {
+        if (number === "." && this.currentOperand.includes(".")) return;
+        this.currentOperand = this.currentOperand.toString() + number.toString();
+    }
+
+    flushOperator(operation) {
+        if (this.currentOperand === "") return;
+        if (this.previousOperand)
+    }
+
     add(){
         return this.first + this.second
     }
